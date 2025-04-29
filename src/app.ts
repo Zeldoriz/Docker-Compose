@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import express from 'express';
 
 import UserRouter from './modules/users/users.routes';
+import ProductsRouter from './modules/products/products.routes';
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/users', UserRouter);
+app.use('/products', ProductsRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
