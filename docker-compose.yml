@@ -7,12 +7,12 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_USER=user
-      - DB_PASSWORD=password
-      - DB_NAME=dockercompose
-      - NODE_ENV=development
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      NODE_ENV: ${NODE_ENV}
     ports:
       - 4000:3000
     depends_on:
@@ -24,16 +24,16 @@ services:
       - app-network
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dockercompose
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'user', '-ppassword']
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '-u', '${DB_USER}', '-p${DB_PASSWORD}']
       interval: 10s
       timeout: 5s
       retries: 3
