@@ -8,4 +8,6 @@ const router = Router();
 
 router.get('/', UsersController.getUsers);
 
+router.post('/', UsersController.getUserById);
+
 export default router;

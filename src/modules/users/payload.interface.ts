@@ -1,4 +1,7 @@
+import User from './user.interface';
+
 export default interface Payload {
-  payload: string;
+  clientPayload: string | null;
+  responsePayload: User | User[] | null;
   time: string;
 }
