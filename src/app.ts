@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import express from 'express';
+const express = require('express');
 
 import UserRouter from './modules/users/users.routes';
 import ProductsRouter from './modules/products/products.routes';
